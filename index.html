@@ -1,0 +1,114 @@
+<html manifest="cache.manifest">
+<head>
+<title>PS4 6.72 Exploit Menu</title>
+<script>
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%";}
+function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Cache Installed Successfully";},1000);setTimeout(function(){window.msgs.innerHTML="Now Close And Re-Open Your Browser";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+</script>
+<script src="exp_common.js"></script>
+<script src="exp_jailbreak.js"></script>
+</head>
+    <style type="text/css">
+        body {
+            background-image: url(bg.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 125%;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+        }
+        
+        .content {
+            background: transparent;
+            width: 100%;
+            margin: 10px auto;
+            border-radius: 10px;
+            text-align: center;
+        }
+		
+        h1 {
+            color: white;
+            text-align:center;
+			font-size:30px;
+	        }
+
+        button {
+			background-color: #003263;
+            border: 2px solid black;
+			color: white;
+			font-size: 100%;
+            border-radius: 10px;
+            height: 45px;
+            text-align: center;
+        }
+        
+        button:hover {
+            box-shadow: 0 5px 50px 0 white;
+            background-color: #D6EAF8 ;
+			color: black;
+            border-radius: 10px;
+        }
+</style>
+<hr>
+<h1 id=msgs style='font-size:30px;text-align:center;'>PS4 6.72 EXPLOIT MENU - 2025</h1>
+<hr>
+<h1 style='font-size:30px;text-align:center;'>MANUAL JAILBREAK</h1>
+<br>
+<div style="text-align:center">
+<button style='width: 260px'onclick="load_exploit(); return false"> Load Exploit </button> >> 
+<button style='width: 260px'onclick="load_goldhen(); return false"> Load GoldHEN 2.3 </button> or 
+<button style='width: 260px'onclick="load_goldhen1(); return false"> Load GoldHEN 2.4b </button>
+<br><br>
+<h1 style='font-size:30px;text-align:center;'>AUTOMATIC JAILBREAK</h1>
+<button style='width: 280px'onclick="load_exploit_goldhen(); return false"> Load Exploit + GoldHEN 2.3 </button> or 
+<button style='width: 280px'onclick="load_exploit_goldhen1(); return false"> Load Exploit + GoldHEN 2.4b </button>
+<br><br>
+<h1 style='font-size:28px;text-align:center;'>PAYLOADS</h1>
+<button style='width: 240px'onclick="load_updatesdisable(); return false"> Disable Updates </button>
+<br>
+</div>
+<script>
+function load_exploit(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading Exploit ...</h1>";
+setTimeout(jailbreak,1000);
+}
+
+function load_exploit_goldhen(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading Exploit + GoldHEN 2.3 ...</h1>";
+LoadedMSG="<h1 style='font-size:30px;text-align:center;'>Exploit + GoldHEN 2.3 !!";ExploitHen="yes";MiraHen="pl_golden.js";
+setTimeout(jailbreak,1000);
+}
+
+function load_exploit_goldhen1(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading Exploit + GoldHEN 2.4b ...</h1>";
+LoadedMSG="<h1 style='font-size:30px;text-align:center;'>Exploit + GoldHEN 2.4b !!";ExploitHen="yes";MiraHen="pl_golden1.js";
+setTimeout(jailbreak,1000);
+}
+
+function load_goldhen(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading GoldHEN 2.3 ...</h1>";
+LoadedMSG="<h1 style='font-size:30px;text-align:center;'>GoldHEN 2.3 Loaded !!";
+var script = document.createElement('script');script.src = "pl_golden.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function load_goldhen1(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading GoldHEN 2.4b ...</h1>";
+LoadedMSG="<h1 style='font-size:30px;text-align:center;'>GoldHEN 2.4b Loaded !!";
+var script = document.createElement('script');script.src = "pl_golden1.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+
+function load_updatesdisable(){
+msgs.innerHTML="<h1 style='font-size:30px;text-align:center;'>Loading Disable Updates ...</h1>";
+LoadedMSG="<h1 style='font-size:30px;text-align:center;'>Disable Updates Loaded !!";
+var script = document.createElement('script');script.src = "pl_updatesDisable.js";document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement('script');script.src = "exp_loader.js";document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+</script>
+</body>
+</html>

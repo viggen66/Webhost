@@ -34,7 +34,7 @@
         
         .header {
             background-color: #0d1b2a;
-            padding: 15px 20px;
+            padding: 11px 15px;
             border-radius: 8px 8px 0 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.8);
             margin-bottom: 20px;
@@ -43,7 +43,7 @@
         
         .header h1 {
             color: #4cc9f0;
-            font-size: 30px;
+            font-size: 28px;
             font-weight: bold;
             text-shadow: 0 0 8px rgba(76, 201, 240, 0.5);
         }
@@ -53,7 +53,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.8);
             margin-bottom: 20px;
-            padding: 20px;
+            padding: 17px;
             text-align: center;
             border: 1px solid #2d2d2d;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -88,7 +88,7 @@
             border: none;
             border-radius: 6px;
             color: white;
-            font-size: 17px;
+            font-size: 16px;
             padding: 12px 20px;
             font-weight: bold;
             cursor: pointer;
@@ -177,6 +177,65 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
+        /* Toggle Switch Styles */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+        
+        .toggle-label {
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2d2d2d;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #4cc9f0;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
         @media (max-width: 768px) {
             .button-group {
                 flex-direction: column;
@@ -204,16 +263,21 @@
             <h2>MANUAL JAILBREAK</h2>
             <div class="button-group">
                 <button onclick="load_exploit(); return false">Load Exploit</button>
-                <button class="secondary" onclick="load_goldhen(); return false">Load GoldHEN 2.3</button>
-                <button class="secondary" onclick="load_goldhen1(); return false">Load GoldHEN 2.4b</button>
+                <button class="secondary" onclick="load_goldhen(); return false">Load GoldHEN 2.4b</button>
             </div>
         </div>
         
         <div class="card">
             <h2>AUTOMATIC JAILBREAK</h2>
             <div class="button-group">
-                <button class="secondary" onclick="load_exploit_goldhen(); return false">Load Exploit + GoldHEN 2.3</button>
-                <button class="secondary" onclick="load_exploit_goldhen1(); return false">Load Exploit + GoldHEN 2.4b</button>
+                <button class="secondary" onclick="load_exploit_goldhen(); return false">Load Exploit + GoldHEN 2.4b</button>
+            </div>
+            <div class="toggle-container">
+                <span class="toggle-label">Auto-load on page open:</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="autoLoadToggle">
+                    <span class="toggle-slider"></span>
+                </label>
             </div>
         </div>
         
@@ -230,43 +294,39 @@
     </div>
 
     <script>
+   
+    function checkAutoLoad() {  // Check if auto-load is enabled
+         if (localStorage.getItem('autoLoadEnabled') === 'true') {        // Check if the toggle was previously set to on
+            document.getElementById('autoLoadToggle').checked = true;
+             setTimeout(load_exploit_goldhen, 500);
+        }
+    }
+    
+    document.getElementById('autoLoadToggle').addEventListener('change', function() {     // Toggle change handler
+        localStorage.setItem('autoLoadEnabled', this.checked);
+        if (this.checked) {
+             setTimeout(load_exploit_goldhen, 500);
+        }
+    });
+    
     function load_exploit(){
         msgs.innerHTML="<h1>Loading Exploit ...</h1>";
         setTimeout(jailbreak,1000);
     }
 
     function load_exploit_goldhen(){
-        msgs.innerHTML="<h1>Loading Exploit + GoldHEN 2.3 ...</h1>";
-        LoadedMSG="<h1>Exploit + GoldHEN 2.3 Loaded ✓</h1>";
+        msgs.innerHTML="<h1>Loading Exploit + GoldHEN 2.4b ...</h1>";
+        LoadedMSG="<h1>Exploit + GoldHEN 2.4b Loaded ✓</h1>";
         ExploitHen="yes";
         MiraHen="pl_golden.js";
         setTimeout(jailbreak,1000);
     }
 
-    function load_exploit_goldhen1(){
-        msgs.innerHTML="<h1>Loading Exploit + GoldHEN 2.4b ...</h1>";
-        LoadedMSG="<h1>Exploit + GoldHEN 2.4b Loaded ✓</h1>";
-        ExploitHen="yes";
-        MiraHen="pl_golden1.js";
-        setTimeout(jailbreak,1000);
-    }
-
     function load_goldhen(){
-        msgs.innerHTML="<h1>Loading GoldHEN 2.3 ...</h1>";
-        LoadedMSG="<h1>GoldHEN 2.3 Loaded ✓</h1>";
-        var script = document.createElement('script');
-        script.src = "pl_golden.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
-        var script = document.createElement('script');
-        script.src = "exp_loader.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
-    }
-
-    function load_goldhen1(){
         msgs.innerHTML="<h1>Loading GoldHEN 2.4b ...</h1>";
         LoadedMSG="<h1>GoldHEN 2.4b Loaded ✓</h1>";
         var script = document.createElement('script');
-        script.src = "pl_golden1.js";
+        script.src = "pl_golden.js";
         document.getElementsByTagName('head')[0].appendChild(script);
         var script = document.createElement('script');
         script.src = "exp_loader.js";
@@ -283,6 +343,9 @@
         script.src = "exp_loader.js";
         document.getElementsByTagName('head')[0].appendChild(script);
     }
+    
+    // Check auto-load on page load
+    window.addEventListener('DOMContentLoaded', checkAutoLoad);
     </script>
 </body>
 </html>

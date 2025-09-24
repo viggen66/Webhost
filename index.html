@@ -3,8 +3,10 @@
 <head>
     <title>PS4 6.72 Exploit Menu</title>
     <script>
-    function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%";}
-    function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="Cache Installed Successfully";},1000);setTimeout(function(){window.msgs.innerHTML="Now Close And Re-Open Your Browser";},3000);}window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+    function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="<h1>Installing Offline Cache: " + Percent + "%</h1>";}
+    function DisplayCacheProgress(){setTimeout(function(){window.msgs.innerHTML="<h1>Cache Installed Successfully</h1>";},1000);setTimeout(function(){window.msgs.innerHTML="<h1>Now Close And Re-Open Your Browser</h1>";},3000);}
+	window.applicationCache.addEventListener("progress",DLProgress,false);window.applicationCache.oncached=function(e){DisplayCacheProgress();};
+	window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
     </script>
     <script src="exp_common.js"></script>
     <script src="exp_jailbreak.js"></script>
@@ -273,7 +275,7 @@
                 <button class="secondary" onclick="load_exploit_goldhen(); return false">Load Exploit + GoldHEN 2.4b</button>
             </div>
             <div class="toggle-container">
-                <span class="toggle-label">Auto-load on page open:</span>
+                <span class="toggle-label">Auto-load GoldHEN on page open:</span>
                 <label class="toggle-switch">
                     <input type="checkbox" id="autoLoadToggle">
                     <span class="toggle-slider"></span>
